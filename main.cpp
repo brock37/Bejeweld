@@ -5,6 +5,7 @@
 #include "Aleatoire.h"
 #include "Item.h"
 #include <iostream>
+#include <string>
 
 void descendreColonne(int colonne)
 {
@@ -70,6 +71,8 @@ int main()
     bool select= false;
     sf::Vector2i dernierPosition(5,5), positionVerif(0,0);
     sf::RenderWindow window(sf::VideoMode(500, 400), "Bejeweld");
+
+
 
     //Ajout des textures au texture manager
     Texture_manager texture;
@@ -186,6 +189,15 @@ int main()
 
                         grilleItem[dernierPosition.x][dernierPosition.y].unSelect();
                         select= false;
+
+                            for( int i(0); i < 8; i++)
+    {
+        for( int j(0); j < 8; j++)
+        {
+            std::cout << grilleItem[j][i].getType();
+        }
+        std::cout << std::endl;
+    }
                     }
                     else
                     {
@@ -218,7 +230,9 @@ int main()
 
         for( int i(0); i < 8; i++)
             for( int j(0); j < 8; j++)
+            {
                 grilleItem[i][j].afficher( window);
+            }
 
 
 
