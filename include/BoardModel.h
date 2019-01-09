@@ -23,9 +23,8 @@ class BoardModel
         *@param nbRows  nombre de ligne dans la grille
         *@param nbCols  nombre de colonne dans la grille
         *@param nbItemTypes Nombre de type different pour les items
-        *@param texManager  reference du texture manager
         */
-        BoardModel(int nbRows, int nbCols,int nbItemTypes, Texture_manager& texManager);
+        BoardModel(int nbRows, int nbCols,int nbItemTypes);
         virtual ~BoardModel();
 
         ///Remplis la grille
@@ -51,7 +50,6 @@ class BoardModel
         ///Nombre de type different d'item
         int m_nbItemTypes;
 
-        Texture_manager& m_textureManager;
         std::vector<std::vector<Item*> > m_grid;
 
 

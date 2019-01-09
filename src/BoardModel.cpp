@@ -1,7 +1,7 @@
 #include "BoardModel.h"
 
 
-BoardModel::BoardModel(int nbRows, int nbCols,int nbItemTypes, Texture_manager& texManager):m_nbRows(nbRows) ,m_nbCols(nbCols) ,m_nbItemTypes(nbItemTypes) ,m_textureManager(texManager)
+BoardModel::BoardModel(int nbRows, int nbCols,int nbItemTypes):m_nbRows(nbRows) ,m_nbCols(nbCols) ,m_nbItemTypes(nbItemTypes)
 {
     std::srand(std::time(0));
     fillGrid();
@@ -23,6 +23,7 @@ BoardModel::~BoardModel()
 
 void BoardModel::fillGrid()
 {
+    Texture_manager& t= Texture_manager::Instances();
     //Remplis aleatoirement la grille
     for(int i(0); i < m_nbRows; i++)
     {
@@ -30,9 +31,9 @@ void BoardModel::fillGrid()
         for(int j(0); j < m_nbCols; j++)
         {
             Item* tmpItem= new Item();
-            tmpItem->positionner(sf::Vector2i(i*32, j*32));
-            tmpItem->setType(std::rand() % m_numTileTypes);
-            tmpItem->setTexture(m_textureManager->getTexture(tmpItem->getType()+1));
+            tmpItem->positionner(sf::Vector2f(i*32, j*32));
+            tmpItem->setType(std::rand() % m_nbItemTypes);
+            tmpItem->setTexture(t.getTexture(tmpItem->getType()+1));
 
             m_grid[i][j]= tmpItem;
         }

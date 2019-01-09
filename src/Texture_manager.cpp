@@ -1,5 +1,6 @@
 #include "Texture_manager.h"
 
+Texture_manager Texture_manager::m_instance= Texture_manager();
 
 
 Texture_manager::Texture_manager()
