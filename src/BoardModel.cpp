@@ -1,11 +1,17 @@
 #include "BoardModel.h"
 
-BoardModel::BoardModel(Texture_manager& texManager):m_textureManager(texManager)
+
 {
+    std::srand(std::time(0));
     //ctor
 }
 
 BoardModel::~BoardModel()
 {
     //dtor
+}
+
+void BoardModel::fillGrid()
+{
+
 }
