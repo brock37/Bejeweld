@@ -7,6 +7,7 @@
 #include <string>
 
 #include "Texture_manager.h"
+#include "Cscreen.h"
 /* Engine - Charge SFML
  * Est chargé de gerer le screen a afficher
  */
@@ -28,8 +29,11 @@ class Engine
     protected:
 
     private:
+    int m_screen;
     sf::RenderWindow m_window;
     Texture_manager m_textureManager;
+
+    std::vector<Cscreen*> Screens;
 };
 
 

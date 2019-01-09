@@ -4,6 +4,7 @@ const string Engine::WINDOW_TITLE="BEJEWELD";
 
 Engine::Engine()
 {
+    int m_screen=0;
     //ctor
     ///Creation de la fenetre
     sf::RenderWindow m_window(sf::VideoMode(500, 400), WINDOW_TITLE);
@@ -27,6 +28,10 @@ Engine::~Engine()
 
 void Engine::runEngine()
 {
+	while (m_screen >= 0)
+	{
+		m_screen = Screens[m_screen]->Run(m_window);
+	}
 
 }//Fin de la fonction run
 
