@@ -8,7 +8,7 @@
 
 #include "Texture_manager.h"
 /* Engine - Charge SFML
- * Est chargé de gerer l'affichage de l'ecran
+ * Est chargé de gerer le screen a afficher
  */
 
  using std::string;
