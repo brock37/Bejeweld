@@ -5,6 +5,8 @@
 */
 
 #include "Cscreen.h"
+#include "BoardModel.h"
+
 
 
 class GameScreen : public Cscreen
