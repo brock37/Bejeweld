@@ -4,6 +4,7 @@
 /* GameScreen - gerer les input et l'affichage du jeux
 */
 
+#include "Texture_manager.h"
 #include "Cscreen.h"
 #include "BoardModel.h"
 
@@ -20,6 +21,7 @@ class GameScreen : public Cscreen
     protected:
 
     private:
+        BoardModel m_boardModel;
 };
 
 #endif // GAMESCREEN_H

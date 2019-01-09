@@ -1,6 +1,6 @@
 #include "GameScreen.h"
 
-GameScreen::GameScreen()
+GameScreen::GameScreen():m_boardModel(8,8,3)
 {
     //ctor
 }
