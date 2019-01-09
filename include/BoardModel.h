@@ -5,6 +5,9 @@
  * sous forme logique
  */
 
+#include <ctime>
+#include <cstdlib>
+
 #include <SFML/System/Vector2.hpp>
 
 #include "Item.h"
@@ -14,7 +17,15 @@
 class BoardModel
 {
     public:
-        BoardModel(Texture_manager& texManager);
+
+
+        /*Ctor BoradMoadel
+        *@param nbRows  nombre de ligne dans la grille
+        *@param nbCols  nombre de colonne dans la grille
+        *@param nbItemTypes Nombre de type different pour les items
+        *@param texManager  reference du texture manager
+        */
+        BoardModel(int nbRows, int nbCols,int nbItemTypes, Texture_manager& texManager);
         virtual ~BoardModel();
 
         ///Remplis la grille
@@ -34,8 +45,16 @@ class BoardModel
     protected:
 
     private:
+        ///Dimmension du plateau
+        int m_nbRows, m_nbCols;
+
+        ///Nombre de type different d'item
+        int m_nbItemTypes;
+
         Texture_manager& m_textureManager;
         std::vector<std::vector<Item> > grid;
+
+
 };
 
 #endif // BOARDMODEL_H
