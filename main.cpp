@@ -60,8 +60,13 @@ bool verifierHorizontalement(sf::Vector2i pos, Item tableau[8][8])
 int swapItem(sf::Vector2i pos1, sf::Vector2i pos2, Item tableau[8][8])
 {
     int tmp= tableau[pos1.x][pos1.y].getType();
+    const sf::Texture* textureTmp= tableau[pos1.x][pos1.y].getTexture();
+
     tableau[pos1.x][pos1.y].setType(tableau[pos2.x][pos2.y].getType() );
+    tableau[pos1.x][pos1.y].setTexture( tableau[pos2.x][pos2.y].getTexture() );
+
     tableau[pos2.x][pos2.y].setType(tmp );
+    tableau[pos2.x][pos2.y].setTexture( textureTmp);
     return 1;
 }
 
@@ -128,6 +133,7 @@ int main()
     }
 
     BanniereRessources banniere( sf::Vector2f(window.getSize().x,50), sf::Vector2f(0, window.getSize().y- 50), texture);
+    std::cout << "Création banniere" << std::endl;
 
 
     while (window.isOpen())
@@ -173,7 +179,6 @@ int main()
                         dernierPosition.x= positionGrille.x;
                         dernierPosition.y= positionGrille.y;
                         std::cout << "Element selectionner :" <<grilleItem[positionGrille.x][positionGrille.y].getType() <<std::endl;
-
                     }
                     //sinon si une case est deja selectionner et qu'on a clique sur une case adjacente on l'echange
                     else if( select == true &&(
@@ -191,13 +196,13 @@ int main()
                         select= false;
 
                             for( int i(0); i < 8; i++)
-    {
-        for( int j(0); j < 8; j++)
-        {
-            std::cout << grilleItem[j][i].getType();
-        }
-        std::cout << std::endl;
-    }
+                            {
+                                for( int j(0); j < 8; j++)
+                                {
+                                    std::cout << grilleItem[j][i].getType();
+                                }
+                                std::cout << std::endl;
+                            }
                     }
                     else
                     {
@@ -233,6 +238,7 @@ int main()
             {
                 grilleItem[i][j].afficher( window);
             }
+
 
 
 
