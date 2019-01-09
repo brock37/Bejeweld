@@ -32,7 +32,7 @@ class Engine
     private:
     int m_screen;
     sf::RenderWindow m_window;
-    Texture_manager m_textureManager;
+    //Texture_manager* m_textureManager;
 
     std::vector<Cscreen*> m_Screens;
 

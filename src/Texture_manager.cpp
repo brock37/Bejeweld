@@ -1,6 +1,6 @@
 #include "Texture_manager.h"
 
-Texture_manager Texture_manager::m_instance= Texture_manager();
+Texture_manager* Texture_manager::m_instance= NULL;
 
 
 Texture_manager::Texture_manager()
@@ -39,5 +39,19 @@ sf::Texture* Texture_manager::getTexture(unsigned int index)
     if( index >= m_listeTexture.size())
         return 0;
     return m_listeTexture[index];
+}
+
+Texture_manager* Texture_manager::Instance()
+{
+    if(m_instance == NULL)
+    {
+        std::cout << "Création de l'instance TextureManager" << std::endl;
+        m_instance= new Texture_manager();
+    }
+    else
+    {
+        std::cout << "Singleton deja creer" << std::endl;
+    }
+    return m_instance;
 }
 

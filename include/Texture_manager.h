@@ -10,7 +10,7 @@ class Texture_manager
 {
 
     public:
-        static	Texture_manager& Instances(){return m_instance;};
+        static	Texture_manager* Instance();
 
         /** Default constructor */
         Texture_manager();
@@ -22,7 +22,7 @@ class Texture_manager
 
     protected:
     private:
-        static Texture_manager m_instance;
+        static Texture_manager* m_instance;
         std::vector<sf::Texture*> m_listeTexture;
 };
 
