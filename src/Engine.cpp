@@ -1,10 +1,12 @@
 #include "Engine.h"
 
+const string Engine::WINDOW_TITLE="BEJEWELD";
+
 Engine::Engine()
 {
     //ctor
     ///Creation de la fenetre
-    sf::RenderWindow m_window(sf::VideoMode(500, 400), "Bejeweld");
+    sf::RenderWindow m_window(sf::VideoMode(500, 400), WINDOW_TITLE);
 
     ///Remplissage du manager de texture
     Texture_manager m_textureManager;
@@ -27,3 +29,5 @@ void Engine::runEngine()
 {
 
 }//Fin de la fonction run
+
+
