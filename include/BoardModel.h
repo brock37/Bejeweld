@@ -52,7 +52,7 @@ class BoardModel
         int m_nbItemTypes;
 
         Texture_manager& m_textureManager;
-        std::vector<std::vector<Item> > grid;
+        std::vector<std::vector<Item*> > m_grid;
 
 
 };
