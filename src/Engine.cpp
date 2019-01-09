@@ -19,6 +19,13 @@ Engine::Engine()
 
 
     ///Initialisation du(des) screen(s)
+    std::vector<Cscreen*> m_Screens;
+
+    GameScreen m_gameScreen;
+
+    m_Screens.push_back(&m_gameScreen);
+
+
 }
 
 Engine::~Engine()
@@ -30,7 +37,7 @@ void Engine::runEngine()
 {
 	while (m_screen >= 0)
 	{
-		m_screen = Screens[m_screen]->Run(m_window);
+		m_screen = m_Screens[m_screen]->Run(m_window);
 	}
 
 }//Fin de la fonction run
