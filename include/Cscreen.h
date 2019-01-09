@@ -1,6 +1,8 @@
 #ifndef CSCREEN_H
 #define CSCREEN_H
 
+#include <SFML/Graphics.hpp>
+
 
 class Cscreen
 {
