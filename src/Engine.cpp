@@ -21,9 +21,9 @@ Engine::Engine()
     ///Initialisation du(des) screen(s)
     std::vector<Cscreen*> m_Screens;
 
-    GameScreen m_gameScreen;
+    GameScreen* m_gameScreen= new GameScreen();
 
-    m_Screens.push_back(&m_gameScreen);
+    m_Screens.push_back(m_gameScreen);
 
 
 }
