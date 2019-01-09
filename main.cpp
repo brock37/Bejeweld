@@ -7,6 +7,9 @@
 #include <iostream>
 #include <string>
 
+
+
+
 void descendreColonne(int colonne)
 {
 
@@ -99,7 +102,14 @@ int main()
         {
             //grilleItem[i][j].setTexture(texture.getTexture(1));
             grilleItem[i][j].positionner(sf::Vector2f(i*32,j*32));
-            grilleItem[i][j].setType(Aleatoire::aleatoire(1,3));
+            int tmpTypeItem= Aleatoire::aleatoire(1,3);
+            //on verifie si les items dadjacents ne sont pas identiques
+            do{
+                tmpTypeItem= Aleatoire::aleatoire(1,3);
+            }while(tmpTypeItem == grilleItem[i-1][j].getType() || tmpTypeItem == grilleItem[i][j-1].getType());
+
+
+            grilleItem[i][j].setType(tmpTypeItem);
             switch (grilleItem[i][j].getType())
             {
             case 1:
