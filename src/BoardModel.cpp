@@ -15,7 +15,7 @@ BoardModel::~BoardModel()
 
         for(int j(0); j < m_nbCols; j++)
         {
-            delete m_grid[i][j];
+            delete m_grid[i + j * m_nbCols];
         }
     }
     //dtor
@@ -24,18 +24,17 @@ BoardModel::~BoardModel()
 void BoardModel::fillGrid()
 {
     Texture_manager* t= Texture_manager::Instance();
+
     //Remplis aleatoirement la grille
     for(int i(0); i < m_nbRows; i++)
     {
-
         for(int j(0); j < m_nbCols; j++)
         {
             Item* tmpItem= new Item();
             tmpItem->positionner(sf::Vector2f(i*32, j*32));
             tmpItem->setType(std::rand() % m_nbItemTypes);
             tmpItem->setTexture(t->getTexture(tmpItem->getType()+1));
-
-            m_grid[i][j]= tmpItem;
+            m_grid.push_back(tmpItem);
         }
     }
 }

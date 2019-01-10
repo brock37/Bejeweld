@@ -50,7 +50,7 @@ class BoardModel
         ///Nombre de type different d'item
         int m_nbItemTypes;
 
-        std::vector<std::vector<Item*> > m_grid;
+        std::vector<Item*> m_grid;
 
 
 };
