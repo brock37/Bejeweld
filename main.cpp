@@ -86,7 +86,7 @@ int main()
 
 
     //Ajout des textures au texture manager
-    Texture_manager texture;
+      Texture_manager texture;
     texture.ajouterTexture("ressources/Images/background.png");
     texture.ajouterTexture("ressources/Images/tileset.png");
     texture.ajouterTexture("ressources/Images/food.png");

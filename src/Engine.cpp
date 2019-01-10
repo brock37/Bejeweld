@@ -10,7 +10,7 @@ Engine::Engine()
     sf::RenderWindow m_window(sf::VideoMode(500, 400), WINDOW_TITLE);
 
     ///Remplissage du manager de texture
-    /*Texture_manager* m_textureManager= Texture_manager::Instance();
+/*    Texture_manager* m_textureManager= Texture_manager::Instance();
     m_textureManager->ajouterTexture("ressources/Images/background.png");
     m_textureManager->ajouterTexture("ressources/Images/tileset.png");
     m_textureManager->ajouterTexture("ressources/Images/food.png");
