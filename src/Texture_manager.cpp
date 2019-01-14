@@ -45,7 +45,7 @@ Texture_manager* Texture_manager::Instance()
 {
     if(m_instance == NULL)
     {
-        std::cout << "Création de l'instance TextureManager" << std::endl;
+        std::cout << "Creation de l'instance TextureManager" << std::endl;
         m_instance= new Texture_manager();
     }
     else
