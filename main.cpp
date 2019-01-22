@@ -78,7 +78,7 @@ int swapItem(sf::Vector2i pos1, sf::Vector2i pos2, Item tableau[8][8])
 int main()
 {
     Engine A;
-   // Engine B;
+   //Engine B;
     bool select= false;
     sf::Vector2i dernierPosition(5,5), positionVerif(0,0);
     sf::RenderWindow window(sf::VideoMode(500, 400), "Bejeweld");
