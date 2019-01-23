@@ -6,7 +6,9 @@
 
 #include "Texture_manager.h"
 #include "Cscreen.h"
+#include "BoardView.h"
 #include "BoardModel.h"
+
 
 
 
@@ -22,6 +24,7 @@ class GameScreen : public Cscreen
 
     private:
         BoardModel m_boardModel;
+        BoardView m_boardView;
 };
 
 #endif // GAMESCREEN_H
