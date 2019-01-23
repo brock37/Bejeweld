@@ -12,12 +12,14 @@
 
 #include "Item.h"
 #include "Texture_manager.h"
+#include "Grid.h"
 
 
 class BoardModel
 {
     public:
 
+         static const int EMPTY_TILE = -1;
 
         /*Ctor BoradMoadel
         *@param nbRows  nombre de ligne dans la grille
@@ -37,8 +39,8 @@ class BoardModel
         void fallenItem();
 
         ///Verifie si l'item et au debut/fin d'une sequence
-        bool isBegingSequence();
-        bool isEndingSequence();
+        bool isBegingSequence(int i, int j);
+        bool isEndingSequence(int i, int j);
 
 
     protected:
@@ -50,7 +52,9 @@ class BoardModel
         ///Nombre de type different d'item
         int m_nbItemTypes;
 
-        std::vector<Item> m_grid;
+        //std::vector<Item> m_grid;
+        Grid<int> m_grid;
+
 
 
 };
