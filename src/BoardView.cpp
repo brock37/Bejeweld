@@ -1,6 +1,7 @@
-#include "include/BoardView.h"
+#include "BoardView.h"
 
-BoardView::BoardView()
+BoardView::BoardView(const BoardModel& model)
+: m_boardModel(model)
 {
 
 }

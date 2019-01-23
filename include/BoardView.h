@@ -3,16 +3,18 @@
 
 #include <SFML/Graphics/Drawable.hpp>
 
+#include "BoardModel.h"
+
 /**
  * @todo write docs
  */
-class BoardView :  sf::Drawable
+class BoardView : public sf::Drawable
 {
 public:
     /**
      * Default constructor
      */
-    BoardView();
+    BoardView(const BoardModel& model);
 
     /**
      * Destructor
@@ -27,7 +29,10 @@ protected:
      * @param states TODO
      * @return TODO
      */
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const ;
+    
+private:
+    const BoardModel& m_boardModel;
 
 };
 
