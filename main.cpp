@@ -78,7 +78,7 @@ int swapItem(sf::Vector2i pos1, sf::Vector2i pos2, Item tableau[8][8])
 int main()
 {
     Engine A;
-   //Engine B;
+
     bool select= false;
     sf::Vector2i dernierPosition(5,5), positionVerif(0,0);
     sf::RenderWindow window(sf::VideoMode(500, 400), "Bejeweld");
@@ -86,13 +86,13 @@ int main()
 
 
     //Ajout des textures au texture manager
-      Texture_manager texture;
+    Texture_manager texture;
     texture.ajouterTexture("ressources/Images/background.png");
     texture.ajouterTexture("ressources/Images/tileset.png");
     texture.ajouterTexture("ressources/Images/food.png");
     texture.ajouterTexture("ressources/Images/wood.png");
     texture.ajouterTexture("ressources/Images/gold.png");
-
+    
     //Creation du background de la grille
     Map_manager grille(texture.getTexture(0), 8,8);
     grille.initGrille();
