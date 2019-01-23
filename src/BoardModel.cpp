@@ -25,6 +25,7 @@ BoardModel::BoardModel(int nbRows, int nbCols,int nbItemTypes)
         }
         std::cout << std::endl;
     }
+    std::cout << "Grid Engine END" <<std::endl;
     //ctor
 }
 
@@ -71,6 +72,26 @@ void BoardModel::fillGrid()
 
         }
     }
+
+    /*On vérifie si il n'y a pas d'item identique a
+    l'initialistaion*/
+    bool boardReady= false;
+    while(!boardReady)
+    {
+        boardReady= true;
+        for(int i(0); i < m_nbRows; i++)
+        {
+            for(int j(0); j < m_nbCols; j++)
+            {
+                if(isBegingSequence(i,j))
+                {
+                    boardReady=false;
+                    m_grid[i][j].setType(std::rand() % m_nbItemTypes);
+                }
+            }
+        }
+    }
+
 }
 
 bool BoardModel::isBegingSequence(int i, int j)
