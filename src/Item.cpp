@@ -50,3 +50,9 @@ void Item::positionner(sf::Vector2f pos)
     m_sprite.setPosition( pos);
     m_rectSelect.setPosition(pos);
 }
+
+void Item::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    target.draw(m_sprite, states);
+}
+

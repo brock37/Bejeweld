@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class Item
+class Item : public sf::Drawable
 {
     public:
         /** Default constructor */
@@ -20,6 +20,8 @@ class Item
         void select();
         void unSelect();
         bool isSelect(){return m_isSelect;}
+        
+        virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const;
     protected:
     private:
         sf::Sprite m_sprite;
