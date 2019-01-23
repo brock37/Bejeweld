@@ -82,3 +82,9 @@ bool BoardModel::isBegingSequence(int i, int j)
             (j >=0 && j < m_nbCols-2 && m_grid[i][j] == m_grid[i][j+1] && m_grid[i][j] == m_grid[i][j+2] ));*/
 }
 
+bool BoardModel::isEndingSequence(int i, int j)
+{
+    return ((i < m_nbRows && i < 2 && m_grid[i][j].getType() == m_grid[i-1][j].getType() && m_grid[i][j].getType()== m_grid[i-2][j].getType()) ||
+            (j < m_nbCols && j < 2 && m_grid[i][j].getType() == m_grid[i][j-1].getType() && m_grid[i][j].getType()== m_grid[i][j-2].getType()));
+}
+
