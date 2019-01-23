@@ -4,6 +4,8 @@
 BoardModel::BoardModel(int nbRows, int nbCols,int nbItemTypes):m_nbRows(nbRows) ,m_nbCols(nbCols) ,m_nbItemTypes(nbItemTypes)
 {
     std::srand(std::time(0));
+
+     
     fillGrid();
     //ctor
 }
@@ -36,7 +38,7 @@ void BoardModel::fillGrid()
             tmpItem.positionner(sf::Vector2f(i*32, j*32));
             int type=std::rand() % m_nbItemTypes;
             tmpItem.setType(type);
-            //tex=t->getTexture(type);
+            tex=t->getTexture(type);
             tmpItem.setTexture( tex);
             //tmpItem.setTexture(t->getTexture(type));
             m_grid.push_back(tmpItem);
