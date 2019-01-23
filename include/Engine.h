@@ -11,6 +11,7 @@
 #include "GameScreen.h"
 /* Engine - Charge SFML
  * Est chargé de gerer le screen a afficher
+ * Initialise les ressources global
  */
 
  using std::string;
