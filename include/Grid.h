@@ -44,4 +44,6 @@ private:
     std::vector<ValueType> m_array;
 }; // class Grid
 
+#include "../src/Grid.inl"
+
 #endif // GRID_H

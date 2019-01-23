@@ -53,7 +53,7 @@ class BoardModel
         int m_nbItemTypes;
 
         //std::vector<Item> m_grid;
-        Grid<int> m_grid;
+        Grid<Item> m_grid;
 
 
 
