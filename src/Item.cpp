@@ -21,6 +21,7 @@ Item::~Item()
     //dtor
 }
 
+/*Can delete this fonction when inerting from drawable is testing*/
 void Item::afficher(sf::RenderWindow &window)
 {
     if( m_isSelect)
