@@ -1,6 +1,9 @@
 #include "BoardModel.h"
 
 
+#include <iostream>
+
+
 
 BoardModel::BoardModel(int nbRows, int nbCols,int nbItemTypes)
 : m_nbRows(nbRows) ,
@@ -12,6 +15,16 @@ BoardModel::BoardModel(int nbRows, int nbCols,int nbItemTypes)
 
 
     fillGrid();
+
+    std::cout << "Grid Engine :" << std::endl;
+    for(int i(0); i < m_nbRows; i++)
+    {
+        for(int j(0); j < m_nbCols; j++)
+        {
+            std::cout << m_grid[i][j].getType();
+        }
+        std::cout << std::endl;
+    }
     //ctor
 }
 
@@ -68,3 +81,4 @@ bool BoardModel::isBegingSequence(int i, int j)
 /*    return ((i >= 0 && i < m_nbRows-2 && m_grid[i][j] == m_grid[i+1][j] && m_grid[i][j] == m_grid[i+2][j] ) ||
             (j >=0 && j < m_nbCols-2 && m_grid[i][j] == m_grid[i][j+1] && m_grid[i][j] == m_grid[i][j+2] ));*/
 }
+
