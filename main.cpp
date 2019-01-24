@@ -78,11 +78,11 @@ int swapItem(sf::Vector2i pos1, sf::Vector2i pos2, Item tableau[8][8])
 int main()
 {
     Texture_manager* m_textureManager= Texture_manager::Instance();
-    m_textureManager->ajouterTexture("ressources/Images/background.png");
-    m_textureManager->ajouterTexture("ressources/Images/tileset.png");
     m_textureManager->ajouterTexture("ressources/Images/food.png");
     m_textureManager->ajouterTexture("ressources/Images/wood.png");
     m_textureManager->ajouterTexture("ressources/Images/gold.png");
+    m_textureManager->ajouterTexture("ressources/Images/background.png");
+    m_textureManager->ajouterTexture("ressources/Images/tileset.png");
     
     Engine A;
     A.runEngine();
