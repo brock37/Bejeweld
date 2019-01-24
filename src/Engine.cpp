@@ -39,7 +39,7 @@ Engine::~Engine()
 
 void Engine::runEngine()
 {
-    std::cout << "Start runEngine" << std::endl;
+    std::cout << "Start runEngine " << m_screen << std::endl;
 	while (m_screen >= 0)
 	{
 		m_screen = m_Screens[m_screen]->Run(m_window);
