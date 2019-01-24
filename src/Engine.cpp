@@ -8,7 +8,7 @@ Engine::Engine()
   m_gameScreen()
 {
     std::cout << "Create Engine" << std::endl;
-    int m_screen=0;
+    m_screen=0;
     //ctor
     ///Creation de la fenetre
     //sf::RenderWindow m_window(sf::VideoMode(500, 400), WINDOW_TITLE);
