@@ -77,187 +77,195 @@ int swapItem(sf::Vector2i pos1, sf::Vector2i pos2, Item tableau[8][8])
 
 int main()
 {
-    Engine A;
-
-    bool select= false;
-    sf::Vector2i dernierPosition(5,5), positionVerif(0,0);
-    sf::RenderWindow window(sf::VideoMode(500, 400), "Bejeweld");
-
-
-
-    //Ajout des textures au texture manager
-    Texture_manager texture;
-    texture.ajouterTexture("ressources/Images/background.png");
-    texture.ajouterTexture("ressources/Images/tileset.png");
-    texture.ajouterTexture("ressources/Images/food.png");
-    texture.ajouterTexture("ressources/Images/wood.png");
-    texture.ajouterTexture("ressources/Images/gold.png");
+    Texture_manager* m_textureManager= Texture_manager::Instance();
+    m_textureManager->ajouterTexture("ressources/Images/background.png");
+    m_textureManager->ajouterTexture("ressources/Images/tileset.png");
+    m_textureManager->ajouterTexture("ressources/Images/food.png");
+    m_textureManager->ajouterTexture("ressources/Images/wood.png");
+    m_textureManager->ajouterTexture("ressources/Images/gold.png");
     
-    //Creation du background de la grille
-    Map_manager grille(texture.getTexture(0), 8,8);
-    grille.initGrille();
+    Engine A;
+    A.runEngine();
 
-    //Creation de la grille d'item
-    Item grilleItem[8][8];
-    for( int i(0); i < 8; i++)
-    {
-        for( int j(0); j < 8; j++)
-        {
-            //grilleItem[i][j].setTexture(texture.getTexture(1));
-            grilleItem[i][j].positionner(sf::Vector2f(i*32,j*32));
-            int tmpTypeItem= Aleatoire::aleatoire(1,3);
-            //on verifie si les items dadjacents ne sont pas identiques
-            do{
-                tmpTypeItem= Aleatoire::aleatoire(1,3);
-            }while(tmpTypeItem == grilleItem[i-1][j].getType() || tmpTypeItem == grilleItem[i][j-1].getType());
-
-
-            grilleItem[i][j].setType(tmpTypeItem);
-            switch (grilleItem[i][j].getType())
-            {
-            case 1:
-                grilleItem[i][j].setTexture(texture.getTexture(2));
-                break;
-
-            case 2:
-                grilleItem[i][j].setTexture(texture.getTexture(3));
-                break;
-
-            case 3:
-                grilleItem[i][j].setTexture(texture.getTexture(4));
-                break;
-
-            default:
-                grilleItem[i][j].setTexture(texture.getTexture(1));
-                break;
-            }
-            //std::cout << grilleItem[i][j].getType();
-        }
-        //std::cout << std::endl;
-    }
-
-    for( int i(0); i < 8; i++)
-    {
-        std::cout << "i";
-        for( int j(0); j < 8; j++)
-        {
-            std::cout << grilleItem[j][i].getType();
-        }
-        std::cout << std::endl;
-    }
-
-    BanniereRessources banniere( sf::Vector2f(window.getSize().x,50), sf::Vector2f(0, window.getSize().y- 50), texture);
-    std::cout << "Création banniere" << std::endl;
-
-
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-
-            else if (event.type == sf::Event::MouseButtonReleased)
-            {
-
-                sf::Vector2i localPosition = sf::Mouse::getPosition(window);
-
-                /*Si on clique dans la grille*/
-                if((localPosition.x > 0 && localPosition.x <  8*32) &&
-                    ( localPosition.y > 0 && localPosition.y < 8*32))
-                {
-                    //On verifie si il y a une case selectionner
-                    for( int i(0); i < 8; i++)
-                    {
-                        for( int j(0); j < 8; j++)
-                        {
-                            if( grilleItem[i][j].isSelect() == true)
-                            {
-                                select= true;
-                            }
-                        }
-                    }
-
-
-                    //On calcul la position dans le tableau d'item
-                    sf::Vector2i positionGrille(localPosition.x/32,localPosition.y/32);
-                    std::cout << positionGrille.x << " " << positionGrille.y << std::endl;
-                    std::cout << dernierPosition.x << " " << dernierPosition.y << std::endl;
-                    std::cout << select <<std::endl;
-
-                    //Si la case n'est pas encore selectionner et aucune case selectionner on la selectionne
-                    if(grilleItem[positionGrille.x][positionGrille.y].isSelect() == false && select == false)
-                    {
-                        grilleItem[positionGrille.x][positionGrille.y].select();
-                        dernierPosition.x= positionGrille.x;
-                        dernierPosition.y= positionGrille.y;
-                        std::cout << "Element selectionner :" <<grilleItem[positionGrille.x][positionGrille.y].getType() <<std::endl;
-                    }
-                    //sinon si une case est deja selectionner et qu'on a clique sur une case adjacente on l'echange
-                    else if( select == true &&(
-                            (dernierPosition.x == positionGrille.x+1 && dernierPosition.y == positionGrille.y ) ||
-                            (dernierPosition.x == positionGrille.x-1 && dernierPosition.y == positionGrille.y ) ||
-                            (dernierPosition.x == positionGrille.x && dernierPosition.y+1 == positionGrille.y ) ||
-                            (dernierPosition.x == positionGrille.x && dernierPosition.y-1 == positionGrille.y ))
-                           )
-                    {
-                        swapItem(sf::Vector2i(positionGrille.x, positionGrille.y),
-                                 sf::Vector2i(dernierPosition.x,dernierPosition.y),
-                                 grilleItem);
-
-                        grilleItem[dernierPosition.x][dernierPosition.y].unSelect();
-                        select= false;
-
-                            for( int i(0); i < 8; i++)
-                            {
-                                for( int j(0); j < 8; j++)
-                                {
-                                    std::cout << grilleItem[j][i].getType();
-                                }
-                                std::cout << std::endl;
-                            }
-                    }
-                    else
-                    {
-                        grilleItem[dernierPosition.x][dernierPosition.y].unSelect();
-                        grilleItem[positionGrille.x][positionGrille.y].select();
-                        dernierPosition.x= positionGrille.x;
-                        dernierPosition.y= positionGrille.y;
-                        std::cout << "Element selectionner :" <<grilleItem[positionGrille.x][positionGrille.y].getType() <<std::endl;
-                    }
-                }
-            }
-
-
-        }
-        /*Pour chaque case on verifie verticalement est horizontalement*/
-        for( int i(0); i < 8; i++)
-        {
-            for( int j(0); j < 8; j++)
-            {
-                positionVerif.x=i;
-                positionVerif.y=j;
-                verifierVerticalement( positionVerif, grilleItem);
-                //verifierHorizontalement( positionVerif, grilleItem);
-
-            }
-        }
-        window.clear();
-        grille.dessinerMap( window);
-        banniere.afficher( window);
-
-        for( int i(0); i < 8; i++)
-            for( int j(0); j < 8; j++)
-            {
-                grilleItem[i][j].afficher( window);
-            }
-
-
-
-
-        window.display();
-    }
+//     bool select= false;
+//     sf::Vector2i dernierPosition(5,5), positionVerif(0,0);
+//     sf::RenderWindow window(sf::VideoMode(500, 400), "Bejeweld");
+// 
+// 
+// 
+//     //Ajout des textures au texture manager
+//     Texture_manager texture;
+//     texture.ajouterTexture("ressources/Images/background.png");
+//     texture.ajouterTexture("ressources/Images/tileset.png");
+//     texture.ajouterTexture("ressources/Images/food.png");
+//     texture.ajouterTexture("ressources/Images/wood.png");
+//     texture.ajouterTexture("ressources/Images/gold.png");
+//     
+//     //Creation du background de la grille
+//     Map_manager grille(texture.getTexture(0), 8,8);
+//     grille.initGrille();
+// 
+//     //Creation de la grille d'item
+//     Item grilleItem[8][8];
+//     for( int i(0); i < 8; i++)
+//     {
+//         for( int j(0); j < 8; j++)
+//         {
+//             //grilleItem[i][j].setTexture(texture.getTexture(1));
+//             grilleItem[i][j].positionner(sf::Vector2f(i*32,j*32));
+//             int tmpTypeItem= Aleatoire::aleatoire(1,3);
+//             //on verifie si les items dadjacents ne sont pas identiques
+//             do{
+//                 tmpTypeItem= Aleatoire::aleatoire(1,3);
+//             }while(tmpTypeItem == grilleItem[i-1][j].getType() || tmpTypeItem == grilleItem[i][j-1].getType());
+// 
+// 
+//             grilleItem[i][j].setType(tmpTypeItem);
+//             switch (grilleItem[i][j].getType())
+//             {
+//             case 1:
+//                 grilleItem[i][j].setTexture(texture.getTexture(2));
+//                 break;
+// 
+//             case 2:
+//                 grilleItem[i][j].setTexture(texture.getTexture(3));
+//                 break;
+// 
+//             case 3:
+//                 grilleItem[i][j].setTexture(texture.getTexture(4));
+//                 break;
+// 
+//             default:
+//                 grilleItem[i][j].setTexture(texture.getTexture(1));
+//                 break;
+//             }
+//             //std::cout << grilleItem[i][j].getType();
+//         }
+//         //std::cout << std::endl;
+//     }
+// 
+//     for( int i(0); i < 8; i++)
+//     {
+//         std::cout << "i";
+//         for( int j(0); j < 8; j++)
+//         {
+//             std::cout << grilleItem[j][i].getType();
+//         }
+//         std::cout << std::endl;
+//     }
+// 
+//     BanniereRessources banniere( sf::Vector2f(window.getSize().x,50), sf::Vector2f(0, window.getSize().y- 50), texture);
+//     std::cout << "Création banniere" << std::endl;
+// 
+// 
+//     while (window.isOpen())
+//     {
+//         sf::Event event;
+//         while (window.pollEvent(event))
+//         {
+//             if (event.type == sf::Event::Closed)
+//                 window.close();
+// 
+//             else if (event.type == sf::Event::MouseButtonReleased)
+//             {
+// 
+//                 sf::Vector2i localPosition = sf::Mouse::getPosition(window);
+// 
+//                 /*Si on clique dans la grille*/
+//                 if((localPosition.x > 0 && localPosition.x <  8*32) &&
+//                     ( localPosition.y > 0 && localPosition.y < 8*32))
+//                 {
+//                     //On verifie si il y a une case selectionner
+//                     for( int i(0); i < 8; i++)
+//                     {
+//                         for( int j(0); j < 8; j++)
+//                         {
+//                             if( grilleItem[i][j].isSelect() == true)
+//                             {
+//                                 select= true;
+//                             }
+//                         }
+//                     }
+// 
+// 
+//                     //On calcul la position dans le tableau d'item
+//                     sf::Vector2i positionGrille(localPosition.x/32,localPosition.y/32);
+//                     std::cout << positionGrille.x << " " << positionGrille.y << std::endl;
+//                     std::cout << dernierPosition.x << " " << dernierPosition.y << std::endl;
+//                     std::cout << select <<std::endl;
+// 
+//                     //Si la case n'est pas encore selectionner et aucune case selectionner on la selectionne
+//                     if(grilleItem[positionGrille.x][positionGrille.y].isSelect() == false && select == false)
+//                     {
+//                         grilleItem[positionGrille.x][positionGrille.y].select();
+//                         dernierPosition.x= positionGrille.x;
+//                         dernierPosition.y= positionGrille.y;
+//                         std::cout << "Element selectionner :" <<grilleItem[positionGrille.x][positionGrille.y].getType() <<std::endl;
+//                     }
+//                     //sinon si une case est deja selectionner et qu'on a clique sur une case adjacente on l'echange
+//                     else if( select == true &&(
+//                             (dernierPosition.x == positionGrille.x+1 && dernierPosition.y == positionGrille.y ) ||
+//                             (dernierPosition.x == positionGrille.x-1 && dernierPosition.y == positionGrille.y ) ||
+//                             (dernierPosition.x == positionGrille.x && dernierPosition.y+1 == positionGrille.y ) ||
+//                             (dernierPosition.x == positionGrille.x && dernierPosition.y-1 == positionGrille.y ))
+//                            )
+//                     {
+//                         swapItem(sf::Vector2i(positionGrille.x, positionGrille.y),
+//                                  sf::Vector2i(dernierPosition.x,dernierPosition.y),
+//                                  grilleItem);
+// 
+//                         grilleItem[dernierPosition.x][dernierPosition.y].unSelect();
+//                         select= false;
+// 
+//                             for( int i(0); i < 8; i++)
+//                             {
+//                                 for( int j(0); j < 8; j++)
+//                                 {
+//                                     std::cout << grilleItem[j][i].getType();
+//                                 }
+//                                 std::cout << std::endl;
+//                             }
+//                     }
+//                     else
+//                     {
+//                         grilleItem[dernierPosition.x][dernierPosition.y].unSelect();
+//                         grilleItem[positionGrille.x][positionGrille.y].select();
+//                         dernierPosition.x= positionGrille.x;
+//                         dernierPosition.y= positionGrille.y;
+//                         std::cout << "Element selectionner :" <<grilleItem[positionGrille.x][positionGrille.y].getType() <<std::endl;
+//                     }
+//                 }
+//             }
+// 
+// 
+//         }
+//         /*Pour chaque case on verifie verticalement est horizontalement*/
+//         for( int i(0); i < 8; i++)
+//         {
+//             for( int j(0); j < 8; j++)
+//             {
+//                 positionVerif.x=i;
+//                 positionVerif.y=j;
+//                 verifierVerticalement( positionVerif, grilleItem);
+//                 //verifierHorizontalement( positionVerif, grilleItem);
+// 
+//             }
+//         }
+//         window.clear();
+//         grille.dessinerMap( window);
+//         banniere.afficher( window);
+// 
+//         for( int i(0); i < 8; i++)
+//             for( int j(0); j < 8; j++)
+//             {
+//                 grilleItem[i][j].afficher( window);
+//             }
+// 
+// 
+// 
+// 
+//         window.display();
+//     }
 
     return 0;
 }
