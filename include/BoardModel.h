@@ -41,6 +41,11 @@ class BoardModel
         ///Verifie si l'item et au debut/fin d'une sequence
         bool isBegingSequence(int i, int j);
         bool isEndingSequence(int i, int j);
+        
+        const Item& getItem(int i, int j) const;
+        
+        int getNbRows() const;
+        int getNbCols() const;
 
 
     protected:

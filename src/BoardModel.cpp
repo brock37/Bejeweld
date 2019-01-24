@@ -45,7 +45,7 @@ BoardModel::~BoardModel()
 void BoardModel::fillGrid()
 {
     Texture_manager* t= Texture_manager::Instance();
-    sf::Texture* tex= new sf::Texture;
+    sf::Texture* tex= NULL;
     //tex->loadFromFile("ressources/Images/tileset.png");
 
     //Remplis aleatoirement la grille
@@ -73,7 +73,7 @@ void BoardModel::fillGrid()
         }
     }
 
-    /*On vérifie si il n'y a pas d'item identique a
+    /*On vÃ©rifie si il n'y a pas d'item identique a
     l'initialistaion*/
     bool boardReady= false;
     while(!boardReady)
@@ -86,7 +86,11 @@ void BoardModel::fillGrid()
                 if(isBegingSequence(i,j))
                 {
                     boardReady=false;
-                    m_grid[i][j].setType(std::rand() % m_nbItemTypes);
+                    int type= std::rand() % m_nbItemTypes;
+                    m_grid[i][j].setType(type);
+                    tex=t->getTexture(type);
+                    m_grid[i][j].setTexture(tex);
+                    
                 }
             }
         }
@@ -109,3 +113,17 @@ bool BoardModel::isEndingSequence(int i, int j)
             (j < m_nbCols && j < 2 && m_grid[i][j].getType() == m_grid[i][j-1].getType() && m_grid[i][j].getType()== m_grid[i][j-2].getType()));
 }
 
+const Item& BoardModel::getItem(int i, int j) const
+{
+    return m_grid[i][j];
+}
+
+int BoardModel::getNbRows() const
+{
+    return m_nbRows;
+}
+
+int BoardModel::getNbCols() const
+{
+    return m_nbCols;
+}
