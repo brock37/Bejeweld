@@ -11,6 +11,7 @@ BoardModel::BoardModel(int nbRows, int nbCols,int nbItemTypes)
   m_nbItemTypes(nbItemTypes),
   m_grid(m_nbRows, m_nbCols)
 {
+    std::cout << "Create BoardModel" << std::endl;
     std::srand(std::time(0));
 
 

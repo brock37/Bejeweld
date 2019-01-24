@@ -4,6 +4,7 @@ GameScreen::GameScreen()
 : m_boardModel(8,8,3),
   m_boardView(m_boardModel)
 {
+    std::cout << "Create GameScreen" << std::endl;
     //ctor
 }
 
@@ -14,6 +15,7 @@ GameScreen::~GameScreen()
 
 int GameScreen::Run(sf::RenderWindow &App)
 {
+    std::cout << "Start Run GameScreen" << std::endl;
     bool running= true;
     sf::Event Event;
     

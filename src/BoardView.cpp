@@ -3,7 +3,7 @@
 BoardView::BoardView(const BoardModel& model)
 : m_boardModel(model)
 {
-
+    std::cout << "Create BoardView" << std::endl;
 }
 
 BoardView::~BoardView()

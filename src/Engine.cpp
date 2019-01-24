@@ -2,8 +2,12 @@
 
 const string Engine::WINDOW_TITLE="BEJEWELD";
 
-Engine::Engine():m_window(sf::VideoMode(500, 400), WINDOW_TITLE), m_Screens(), m_gameScreen()
+Engine::Engine()
+: m_window(sf::VideoMode(500, 400), WINDOW_TITLE),
+  m_Screens(),
+  m_gameScreen()
 {
+    std::cout << "Create Engine" << std::endl;
     int m_screen=0;
     //ctor
     ///Creation de la fenetre
@@ -35,6 +39,7 @@ Engine::~Engine()
 
 void Engine::runEngine()
 {
+    std::cout << "Start runEngine" << std::endl;
 	while (m_screen >= 0)
 	{
 		m_screen = m_Screens[m_screen]->Run(m_window);
