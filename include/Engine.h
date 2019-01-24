@@ -38,7 +38,7 @@ class Engine
     std::vector<Cscreen*> m_Screens;
 
     //Not use anymore
-    //GameScreen m_gameScreen;
+    GameScreen m_gameScreen;
 };
 
 
