@@ -41,6 +41,15 @@ int GameScreen::Run(sf::RenderWindow &App)
 					break;
 				}
 			}
+			//Mouse pressed
+			if (Event.type == sf::Event::MouseButtonReleased && Event.mouseButton.button == sf::Mouse::Button::Left)
+            {
+                int x= Event.mouseButton.x;
+                int y= Event.mouseButton.y;
+                
+                
+                
+            }
         }
         
         App.clear();
