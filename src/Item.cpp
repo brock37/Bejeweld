@@ -16,6 +16,16 @@ Item::Item(sf::Texture *texture, unsigned int type)
     //m_sprite.setTextureRect(sf::IntRect((type-1) *32,0,32,32));
 }
 
+Item::Item(const Item &cp)
+: m_isSelect(cp.m_isSelect),
+  m_rectSelect(cp.m_rectSelect),
+  m_type(cp.m_type),
+  m_sprite(cp.m_sprite),
+  m_textureRect(cp.m_textureRect)
+  {
+      
+  }
+
 Item::~Item()
 {
     //dtor

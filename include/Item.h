@@ -9,8 +9,10 @@ class Item : public sf::Drawable
         /** Default constructor */
         Item();
         Item(sf::Texture *texture,unsigned int type);
+        Item(const Item& cp);
         /** Default destructor */
         ~Item();
+        
         void afficher(sf::RenderWindow &window);
         void setTexture(const sf::Texture* texture){ m_sprite.setTexture( *texture);}
         const sf::Texture* getTexture(){return m_sprite.getTexture(); }
