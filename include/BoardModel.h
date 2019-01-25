@@ -33,7 +33,7 @@ class BoardModel
         void fillGrid();
 
         ///Echange 2 items de place
-        void swapItem(sf::Vector2i pos1, sf::Vector2i pos2);
+        bool swapItem(int row1, int col1, int row2, int col2);
 
         ///Fais chuter les items si il n'y a rien en dessous
         void fallenItem();

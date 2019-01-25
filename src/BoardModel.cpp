@@ -99,6 +99,24 @@ void BoardModel::fillGrid()
 
 }
 
+bool BoardModel::swapItem(int row1, int col1, int row2, int col2)
+{
+    if((row1 == row2 && ((col1==col2-1)||(col1==col2+1))) ||
+       (col1 == col2 && ((row1==row2-1)||(row1==row2+1))))
+    {
+        if(m_grid[row1][col1].getType() == m_grid[row2][col2].getType())
+        {
+            return false;//Si les items sont du meme types pas besoin d'échanger
+        }
+        Item tmp=m_grid[row1][col1];
+        m_grid[row1][col1]=m_grid[row2][col2];
+        m_grid[row2][col2]= tmp;
+    }
+    
+    
+    return false;
+}
+
 bool BoardModel::isBegingSequence(int i, int j)
 {
     return ((i >= 0 && i < m_nbRows-2 && m_grid[i][j].getType() == m_grid[i+1][j].getType() && m_grid[i][j].getType()== m_grid[i+2][j].getType()) ||
