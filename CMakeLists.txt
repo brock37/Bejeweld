@@ -11,7 +11,7 @@ INCLUDE_DIRECTORIES(include)
 include_directories(ressources)
 
 
-add_executable(Bejeweld main.cpp
+add_executable(Bejeweld src/main.cpp
                          src/Aleatoire.cpp
                          src/BanniereRessources.cpp
                          src/BoardModel.cpp
