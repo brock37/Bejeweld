@@ -111,6 +111,7 @@ bool BoardModel::swapItem(int row1, int col1, int row2, int col2)
         Item tmp=m_grid[row1][col1];
         m_grid[row1][col1]=m_grid[row2][col2];
         m_grid[row2][col2]= tmp;
+        return true;
     }
     
     
