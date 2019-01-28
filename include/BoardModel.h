@@ -46,6 +46,8 @@ class BoardModel
         
         int getNbRows() const;
         int getNbCols() const;
+        
+        void setItemSelected(int row, int col);
 
 
     protected:

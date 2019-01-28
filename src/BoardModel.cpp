@@ -147,3 +147,9 @@ int BoardModel::getNbCols() const
 {
     return m_nbCols;
 }
+
+void BoardModel::setItemSelected(int row, int col)
+{
+    m_grid[row][col].select();
+}
+
