@@ -11,6 +11,8 @@
 class BoardView : public sf::Drawable
 {
 public:
+    
+    static const int TileSize;
     /**
      * Default constructor
      */
@@ -20,6 +22,9 @@ public:
      * Destructor
      */
     ~BoardView();
+    
+    int getTileColumbyX(int x);
+    int getTileRowByY(int y);
 
 protected:
     /**

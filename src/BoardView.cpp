@@ -1,5 +1,7 @@
 #include "BoardView.h"
 
+const int BoardView::TileSize= 32;
+
 BoardView::BoardView(const BoardModel& model)
 : m_boardModel(model)
 {
@@ -22,3 +24,15 @@ void BoardView::draw(sf::RenderTarget& target, sf::RenderStates states) const
     }
 
 }
+
+
+int BoardView::getTileColumbyX(int x)
+{
+    return x / TileSize;
+}
+
+int BoardView::getTileRowByY(int y)
+{
+    return y / TileSize;
+}
+
