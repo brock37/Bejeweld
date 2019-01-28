@@ -8,6 +8,8 @@ GameScreen::GameScreen()
   m_prevSelectedTile(-1,-1)
 {
     std::cout << "Create GameScreen" << std::endl;
+    
+    m_boardState= READY;
     //ctor
 }
 
@@ -50,12 +52,15 @@ int GameScreen::Run(sf::RenderWindow &App)
                 int x= Event.mouseButton.x;
                 int y= Event.mouseButton.y;
                 
+                std::cout << "Mouse Pos: " << x << " " << y << std::endl;
+                
                 if(m_boardState == READY || m_boardState == WAIT_SELECT2)
                 {
                     if( m_boardView.isTileAtCoordinate(x,y))
                     {
                         int row= m_boardView.getTileColumnbyX(x);
                         int col=m_boardView.getTileRowByY(y);
+                        std::cout << "Grid Pos: " << row << " " << col << std::endl;
                         
                         if(m_boardState == WAIT_SELECT2)
                         {
@@ -74,6 +79,8 @@ int GameScreen::Run(sf::RenderWindow &App)
             }
         }
         
+        update();
+        
         App.clear();
         App.draw(m_boardView);
         App.display();
@@ -81,3 +88,34 @@ int GameScreen::Run(sf::RenderWindow &App)
     
     return -1;
 }
+
+void GameScreen::update()
+{
+    switch(m_boardState)
+    {
+        case SELECT1:
+            m_boardModel.setItemSelected(m_selected_tile.x, m_selected_tile.y);
+            m_boardState=WAIT_SELECT2;
+            break;
+            
+        case WAIT_SELECT2:
+            break;
+            
+        case SELECT2:
+            if( !(m_boardModel.swapItem(m_selected_tile.x, m_selected_tile.y, m_prevSelectedTile.x, m_prevSelectedTile.y)))
+            {
+                //Unable to switch
+                m_boardState=READY;
+            }
+            else
+            {
+                //Si l'echange ne donne pas de sequence on remmet en place
+                //m_boardModel.swapItem(m_selected_tile.x, m_selected_tile.y, m_prevSelectedTile.x, m_prevSelectedTile.y)
+            }
+            break;
+            
+        default:
+            break;            
+    }
+}
+

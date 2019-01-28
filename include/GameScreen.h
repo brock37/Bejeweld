@@ -20,6 +20,8 @@ class GameScreen : public Cscreen
         virtual ~GameScreen();
 
         virtual int Run (sf::RenderWindow &App);
+        
+        void update();
 
     protected:
 
