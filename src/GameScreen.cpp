@@ -66,7 +66,7 @@ int GameScreen::Run(sf::RenderWindow &App)
                         {
                             m_boardState= SELECT1;
                         }
-                        m_selected_tile= sf::Vector2i(x,y);
+                        m_selected_tile= sf::Vector2i(row,col);
                     }
                 }
                 
