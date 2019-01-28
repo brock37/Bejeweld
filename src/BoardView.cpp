@@ -41,3 +41,7 @@ int BoardView::getTileRowByY(int y)
     return y / TILE_SIZE;
 }
 
+bool BoardView::isTileAtCoordinate(int x, int y)
+{
+    return !( getTileColumbyX(x) == TILE_NONE_FOUND || getTileRowByY(y) == TILE_NONE_FOUND);
+}

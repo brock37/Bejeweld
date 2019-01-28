@@ -26,6 +26,8 @@ public:
     
     int getTileColumbyX(int x);
     int getTileRowByY(int y);
+    
+    bool isTileAtCoordinate(int x, int y);
 
 protected:
     /**
