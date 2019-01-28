@@ -24,7 +24,7 @@ public:
      */
     ~BoardView();
     
-    int getTileColumbyX(int x);
+    int getTileColumnbyX(int x);
     int getTileRowByY(int y);
     
     bool isTileAtCoordinate(int x, int y);

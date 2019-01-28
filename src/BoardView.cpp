@@ -27,7 +27,7 @@ void BoardView::draw(sf::RenderTarget& target, sf::RenderStates states) const
 }
 
 
-int BoardView::getTileColumbyX(int x)
+int BoardView::getTileColumnbyX(int x)
 {
     if( x <= 0 || x >= m_boardModel.getNbCols() * TILE_SIZE)
         return TILE_NONE_FOUND;
@@ -43,5 +43,5 @@ int BoardView::getTileRowByY(int y)
 
 bool BoardView::isTileAtCoordinate(int x, int y)
 {
-    return !( getTileColumbyX(x) == TILE_NONE_FOUND || getTileRowByY(y) == TILE_NONE_FOUND);
+    return !( getTileColumnbyX(x) == TILE_NONE_FOUND || getTileRowByY(y) == TILE_NONE_FOUND);
 }
