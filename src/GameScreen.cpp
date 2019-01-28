@@ -3,7 +3,9 @@
 GameScreen::GameScreen()
 : m_boardModel(8,8,3),
   m_boardView(m_boardModel),
-  m_boardState(UNITIALIZED)
+  m_boardState(UNITIALIZED),
+  m_selected_tile(-1,-1),
+  m_prevSelectedTile(-1,-1)
 {
     std::cout << "Create GameScreen" << std::endl;
     //ctor
@@ -50,7 +52,22 @@ int GameScreen::Run(sf::RenderWindow &App)
                 
                 if(m_boardState == READY || m_boardState == WAIT_SELECT2)
                 {
-                    
+                    if( m_boardView.isTileAtCoordinate(x,y))
+                    {
+                        int row= m_boardView.getTileColumnbyX(x);
+                        int col=m_boardView.getTileRowByY(y);
+                        
+                        if(m_boardState == WAIT_SELECT2)
+                        {
+                            m_prevSelectedTile= m_selected_tile;
+                            m_boardState= SELECT2;
+                        }
+                        else
+                        {
+                            m_boardState= SELECT1;
+                        }
+                        m_selected_tile= sf::Vector2i(x,y);
+                    }
                 }
                 
                 
