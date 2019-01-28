@@ -12,7 +12,8 @@ class BoardView : public sf::Drawable
 {
 public:
     
-    static const int TileSize;
+    static const int TILE_SIZE;
+    static const int TILE_NONE_FOUND;
     /**
      * Default constructor
      */
