@@ -15,6 +15,7 @@
 class GameScreen : public Cscreen
 {
     public:
+        enum BoardState{UNITIALIZED, READY, SELECT1, WAIT_SELECT2, SELECT2};
         GameScreen();
         virtual ~GameScreen();
 
@@ -25,6 +26,7 @@ class GameScreen : public Cscreen
     private:
         BoardModel m_boardModel;
         BoardView m_boardView;
+        BoardState m_boardState;
 };
 
 #endif // GAMESCREEN_H

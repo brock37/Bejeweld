@@ -2,7 +2,8 @@
 
 GameScreen::GameScreen()
 : m_boardModel(8,8,3),
-  m_boardView(m_boardModel)
+  m_boardView(m_boardModel),
+  m_boardState(UNITIALIZED)
 {
     std::cout << "Create GameScreen" << std::endl;
     //ctor
@@ -47,6 +48,10 @@ int GameScreen::Run(sf::RenderWindow &App)
                 int x= Event.mouseButton.x;
                 int y= Event.mouseButton.y;
                 
+                if(m_boardState == READY || m_boardState == WAIT_SELECT2)
+                {
+                    
+                }
                 
                 
             }
