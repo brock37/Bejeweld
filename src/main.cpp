@@ -61,18 +61,18 @@ bool verifierHorizontalement(sf::Vector2i pos, Item tableau[8][8])
     return false;
 }
 
-int swapItem(sf::Vector2i pos1, sf::Vector2i pos2, Item tableau[8][8])
-{
-    int tmp= tableau[pos1.x][pos1.y].getType();
-    const sf::Texture* textureTmp= tableau[pos1.x][pos1.y].getTexture();
-
-    tableau[pos1.x][pos1.y].setType(tableau[pos2.x][pos2.y].getType() );
-    tableau[pos1.x][pos1.y].setTexture( tableau[pos2.x][pos2.y].getTexture() );
-
-    tableau[pos2.x][pos2.y].setType(tmp );
-    tableau[pos2.x][pos2.y].setTexture( textureTmp);
-    return 1;
-}
+// int swapItem(sf::Vector2i pos1, sf::Vector2i pos2, Item tableau[8][8])
+// {
+//     int tmp= tableau[pos1.x][pos1.y].getType();
+//     const sf::Texture* textureTmp= tableau[pos1.x][pos1.y].getTexture();
+// 
+//     tableau[pos1.x][pos1.y].setType(tableau[pos2.x][pos2.y].getType() );
+//     tableau[pos1.x][pos1.y].setTexture( tableau[pos2.x][pos2.y].getTexture() );
+// 
+//     tableau[pos2.x][pos2.y].setType(tmp );
+//     tableau[pos2.x][pos2.y].setTexture( textureTmp);
+//     return 1;
+// }
 
 
 int main()
