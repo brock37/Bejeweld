@@ -14,7 +14,7 @@ class Item : public sf::Drawable
         ~Item();
         
         void afficher(sf::RenderWindow &window);
-        void setTexture(const sf::Texture* texture){ m_sprite.setTexture( *texture);}
+        void setTexture(sf::Texture* texture);
         const sf::Texture* getTexture(){return m_sprite.getTexture(); }
         void positionner(sf::Vector2f pos);
         void setType(int type);

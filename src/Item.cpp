@@ -34,6 +34,12 @@ Item::~Item()
     //dtor
 }
 
+void Item::setTexture(sf::Texture* texture)
+{
+    m_texture= texture;
+    m_sprite.setTexture( *m_texture);
+}
+
 /*Can delete this fonction when inerting from drawable is testing*/
 void Item::afficher(sf::RenderWindow &window)
 {
