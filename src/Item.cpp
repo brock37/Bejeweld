@@ -28,6 +28,19 @@ Item::Item(const Item &cp)
   {
       
   }
+  
+  Item& Item::operator=(const Item& cp)
+{
+    m_isSelect= cp.m_isSelect;
+    m_rectSelect= cp.m_rectSelect;
+    m_sprite= cp.m_sprite;
+    m_texture= cp.m_texture;
+    m_textureRect= cp.m_textureRect;
+    m_type= cp.m_type;
+    setTexture(m_texture);
+    return *this;
+}
+
 
 Item::~Item()
 {
