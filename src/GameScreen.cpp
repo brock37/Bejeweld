@@ -42,6 +42,9 @@ int GameScreen::Run(sf::RenderWindow &App)
 				case sf::Keyboard::Escape:
 					return (0);
 					break;
+                case sf::Keyboard::P:
+                    m_boardModel.printGrid();
+                    break;
 				default:
 					break;
 				}
@@ -58,9 +61,8 @@ int GameScreen::Run(sf::RenderWindow &App)
                 {
                     if( m_boardView.isTileAtCoordinate(x,y))
                     {
-                        int row= m_boardView.getTileColumnbyX(x);
-                        int col=m_boardView.getTileRowByY(y);
-                        std::cout << "Grid Pos: " << row << " " << col << std::endl;
+                        int row= m_boardView.getTileRowByY(y);
+                        int col= m_boardView.getTileColumnbyX(x);
                         
                         if(m_boardState == WAIT_SELECT2)
                         {
@@ -71,7 +73,9 @@ int GameScreen::Run(sf::RenderWindow &App)
                         {
                             m_boardState= SELECT1;
                         }
-                        m_selected_tile= sf::Vector2i(row,col);
+                        m_selected_tile= sf::Vector2i(col,row);
+                        //std::cout << "Select Pos: " << m_selected_tile.x << " " << m_selected_tile.y << std::endl;
+                        //std::cout << "Prev Pos: " << m_prevSelectedTile.x << " " << m_prevSelectedTile.y << std::endl;
                     }
                 }
                 
@@ -96,25 +100,31 @@ void GameScreen::update()
         case SELECT1:
             m_boardModel.setItemSelected(m_selected_tile.x, m_selected_tile.y);
             m_boardState=WAIT_SELECT2;
-            m_boardModel.printGrid();
+            //std::cout << "SELECT1" << std::endl;
             break;
             
         case WAIT_SELECT2:
             break;
             
         case SELECT2:
+            //std::cout << "SELECT2" << std::endl;
+            m_boardModel.deselectAllItem();
             if( !(m_boardModel.swapItem(m_selected_tile.x, m_selected_tile.y, m_prevSelectedTile.x, m_prevSelectedTile.y)))
             {
                 //Unable to switch
                 m_boardState=READY;
+                //std::cout << "NO-SWAP" << std::endl;
             }
             else
             {
                 m_boardState= READY;
+                //std::cout << "SWAP" << std::endl;
                 //Si l'echange ne donne pas de sequence on remmet en place
                 //m_boardModel.swapItem(m_selected_tile.x, m_selected_tile.y, m_prevSelectedTile.x, m_prevSelectedTile.y)
             }
-            m_boardModel.printGrid();
+            //m_boardModel.printGrid();
+            m_prevSelectedTile=sf::Vector2i(-1,-1);
+            m_selected_tile=sf::Vector2i(-1,-1);
             break;
             
         default:
