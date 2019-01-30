@@ -109,16 +109,16 @@ void GameScreen::update()
         case SELECT2:
             //std::cout << "SELECT2" << std::endl;
             m_boardModel.deselectAllItem();
-            if( !(m_boardModel.swapItem(m_selected_tile.x, m_selected_tile.y, m_prevSelectedTile.x, m_prevSelectedTile.y)))
+            if( !(m_boardModel.swapItem(m_selected_tile.y, m_selected_tile.x, m_prevSelectedTile.y, m_prevSelectedTile.x)))
             {
                 //Unable to switch
                 m_boardState=READY;
-                //std::cout << "NO-SWAP" << std::endl;
+                std::cout << "NO-SWAP" << std::endl;
             }
             else
             {
                 m_boardState= READY;
-                //std::cout << "SWAP" << std::endl;
+                std::cout << "SWAP" << std::endl;
                 //Si l'echange ne donne pas de sequence on remmet en place
                 //m_boardModel.swapItem(m_selected_tile.x, m_selected_tile.y, m_prevSelectedTile.x, m_prevSelectedTile.y)
             }
