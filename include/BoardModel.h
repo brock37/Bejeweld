@@ -48,6 +48,7 @@ class BoardModel
         int getNbCols() const;
         
         void setItemSelected(int row, int col);
+        void deselectAllItem();
         
         void printGrid();
 

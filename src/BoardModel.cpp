@@ -95,8 +95,10 @@ bool BoardModel::swapItem(int row1, int col1, int row2, int col2)
     if((row1 == row2 && ((col1==col2-1)||(col1==col2+1))) ||
        (col1 == col2 && ((row1==row2-1)||(row1==row2+1))))
     {
+        std::cout << "swap item :" << row1 << "," << col1 << " - " << row2 << "," << col2 << std::endl; 
         if(m_grid[row1][col1].getType() == m_grid[row2][col2].getType())
         {
+            std::cout << "SAME TYPE" << std::endl;
             return false;//Si les items sont du meme types pas besoin d'échanger
         }
         sf::Texture *tex1= m_grid[row1][col1].getTexture();
@@ -147,6 +149,18 @@ void BoardModel::setItemSelected(int row, int col)
 {
     m_grid[row][col].select();
 }
+
+void BoardModel::deselectAllItem()
+{
+    for(int i(0); i < m_nbRows; i++)
+    {
+        for(int j(0); j < m_nbCols; j++)
+        {
+            m_grid[i][j].unSelect();
+        }
+    }
+}
+
 
 
 void BoardModel::printGrid()
