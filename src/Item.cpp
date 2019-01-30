@@ -86,6 +86,10 @@ void Item::positionner(sf::Vector2f pos)
 
 void Item::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
+    if( isSelect())
+    {
+        target.draw(m_rectSelect, states);
+    }
     target.draw(m_sprite, states);
 }
 

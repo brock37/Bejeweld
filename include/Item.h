@@ -24,7 +24,7 @@ class Item : public sf::Drawable
         int getType(){return m_type;}
         void select();
         void unSelect();
-        bool isSelect(){return m_isSelect;}
+        bool isSelect()const {return m_isSelect;}
         
         virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const;
     protected:
