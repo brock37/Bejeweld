@@ -17,16 +17,7 @@ BoardModel::BoardModel(int nbRows, int nbCols,int nbItemTypes)
 
     fillGrid();
 
-    std::cout << "Grid Engine :" << std::endl;
-    for(int i(0); i < m_nbRows; i++)
-    {
-        for(int j(0); j < m_nbCols; j++)
-        {
-            std::cout << m_grid[i][j].getType();
-        }
-        std::cout << std::endl;
-    }
-    std::cout << "Grid Engine END" <<std::endl;
+    printGrid();
     //ctor
 }
 
@@ -108,9 +99,13 @@ bool BoardModel::swapItem(int row1, int col1, int row2, int col2)
         {
             return false;//Si les items sont du meme types pas besoin d'échanger
         }
+        sf::Texture *tex1= m_grid[row1][col1].getTexture();
+        sf::Texture *tex2= m_grid[row2][col2].getTexture();
         Item tmp=m_grid[row1][col1];
         m_grid[row1][col1]=m_grid[row2][col2];
         m_grid[row2][col2]= tmp;
+        m_grid[row1][col1].setTexture(tex1);
+        m_grid[row2][col2].setTexture(tex2);
         return true;
     }
     
@@ -153,3 +148,17 @@ void BoardModel::setItemSelected(int row, int col)
     m_grid[row][col].select();
 }
 
+
+void BoardModel::printGrid()
+{
+    std::cout << "Grid Engine :" << std::endl;
+    for(int i(0); i < m_nbRows; i++)
+    {
+        for(int j(0); j < m_nbCols; j++)
+        {
+            std::cout << m_grid[i][j].getType();
+        }
+        std::cout << std::endl;
+    }
+    std::cout << "Grid Engine END" <<std::endl;
+}
