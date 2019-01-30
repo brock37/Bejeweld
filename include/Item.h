@@ -13,9 +13,12 @@ class Item : public sf::Drawable
         /** Default destructor */
         ~Item();
         
+        Item& operator=(const Item& cp);
+        
         void afficher(sf::RenderWindow &window);
         void setTexture(sf::Texture* texture);
-        const sf::Texture* getTexture(){return m_sprite.getTexture(); }
+        //const sf::Texture* getTexture(){return m_sprite.getTexture(); }
+        sf::Texture* getTexture(){return m_texture;}
         void positionner(sf::Vector2f pos);
         void setType(int type);
         int getType(){return m_type;}
