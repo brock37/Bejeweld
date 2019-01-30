@@ -96,6 +96,7 @@ void GameScreen::update()
         case SELECT1:
             m_boardModel.setItemSelected(m_selected_tile.x, m_selected_tile.y);
             m_boardState=WAIT_SELECT2;
+            m_boardModel.printGrid();
             break;
             
         case WAIT_SELECT2:
@@ -109,9 +110,11 @@ void GameScreen::update()
             }
             else
             {
+                m_boardState= READY;
                 //Si l'echange ne donne pas de sequence on remmet en place
                 //m_boardModel.swapItem(m_selected_tile.x, m_selected_tile.y, m_prevSelectedTile.x, m_prevSelectedTile.y)
             }
+            m_boardModel.printGrid();
             break;
             
         default:
