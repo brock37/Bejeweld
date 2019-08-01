@@ -5,10 +5,11 @@ GameScreen::GameScreen()
   m_boardView(m_boardModel),
   m_boardState(UNITIALIZED),
   m_selected_tile(-1,-1),
-  m_prevSelectedTile(-1,-1)
+  m_prevSelectedTile(-1,-1),
+  m_background()
 {
     std::cout << "Create GameScreen" << std::endl;
-    
+
     m_boardState= READY;
     //ctor
 }
@@ -23,6 +24,8 @@ int GameScreen::Run(sf::RenderWindow &App)
     std::cout << "Start Run GameScreen" << std::endl;
     bool running= true;
     sf::Event Event;
+    Texture_manager* t= Texture_manager::Instance();
+    m_background.setTexture(*(t->getTexture(3)));
     
     while(running)
     {
@@ -86,6 +89,7 @@ int GameScreen::Run(sf::RenderWindow &App)
         update();
         
         App.clear();
+        App.draw(m_background);
         App.draw(m_boardView);
         App.display();
     }

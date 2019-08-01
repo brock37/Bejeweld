@@ -4,6 +4,7 @@
 /* GameScreen - gerer les input et l'affichage du jeux
 */
 #include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics.hpp>
 #include "Texture_manager.h"
 #include "Cscreen.h"
 #include "BoardView.h"
@@ -30,6 +31,7 @@ class GameScreen : public Cscreen
         BoardView m_boardView;
         BoardState m_boardState;
         sf::Vector2i m_selected_tile, m_prevSelectedTile;
+        sf::Sprite m_background;
 };
 
 #endif // GAMESCREEN_H

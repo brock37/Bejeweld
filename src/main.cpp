@@ -81,7 +81,7 @@ int main()
     m_textureManager->ajouterTexture("ressources/Images/food.png");
     m_textureManager->ajouterTexture("ressources/Images/wood.png");
     m_textureManager->ajouterTexture("ressources/Images/gold.png");
-    m_textureManager->ajouterTexture("ressources/Images/background.png");
+    m_textureManager->ajouterTexture("ressources/Images/back.png");
     m_textureManager->ajouterTexture("ressources/Images/tileset.png");
     
     Engine A;
