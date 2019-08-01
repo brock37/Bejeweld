@@ -194,11 +194,11 @@ void BoardModel::deselectAllItem()
 void BoardModel::printGrid()
 {
     std::cout << "Grid Engine :" << std::endl;
-    for(int i(0); i < m_nbRows; i++)
+    for(int i(0); i < m_nbCols; i++)
     {
-        for(int j(0); j < m_nbCols; j++)
+        for(int j(0); j < m_nbRows; j++)
         {
-            std::cout << m_grid[i][j].getType();
+            std::cout << m_grid[j][i].getType();
         }
         std::cout << std::endl;
     }
