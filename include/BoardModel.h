@@ -30,7 +30,7 @@ class BoardModel
         virtual ~BoardModel();
 
         ///Remplis la grille
-        void fillGrid();
+        void fillGrid(bool debug= false);
 
         ///Echange 2 items de place
         bool swapItem(int row1, int col1, int row2, int col2);
